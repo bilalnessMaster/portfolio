@@ -30,7 +30,7 @@ import { projects } from "@/lib/constants"
 export const Projects = () => {
 
   return (
-    <section className="w-full space-y-6">
+    <section className="w-full space-y-6 ">
       <Header href={"/logos/scroll.svg"} section={"My Works"} />
       <List />
     </section>
@@ -57,7 +57,7 @@ interface Props {
   description: string[];
   technologies: string[];
   name: string;
-  live?: string  | null;
+  live?: string | null;
 }
 const item = {
   hidden: {
@@ -86,6 +86,7 @@ const Project = ({ images, technologies, live, description, name }: Props) => {
         variants={item}
         initial="hidden"
         whileInView={'show'}
+        className="w-full"
         viewport={{
           once: true
         }}
@@ -102,29 +103,29 @@ const Project = ({ images, technologies, live, description, name }: Props) => {
               ))
             }
           </ul>
-          <div className="absolute rounded-t-sm -bottom-3 group-hover:bottom-0 transiton-all duration-700 -right-24 shadow-[0px_0px_40px_10px_rgba(0,0,0,1)] shadow-primary/45">
+          <div className="absolute rounded-t-sm -bottom-24 right-0 md:-bottom-3 group-hover:bottom-0 transiton-all duration-700 md:-right-24  p-5 md:p-0">
 
             <Image
               src={image}
               width={400}
               height={720}
               alt="main image"
-              className="objet-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+              className="objet-cover shadow-[0px_0px_40px_10px_rgba(0,0,0,1)] shadow-primary/45 grayscale group-hover:grayscale-0 transition-all duration-500" />
           </div>
         </DrawerTrigger >
 
       </motion.div>
       <DrawerContent className=" pb-32">
-      
+
         <DrawerHeader className="hidden">
           <DrawerTitle>Are you absolutely sure?</DrawerTitle>
           <DrawerDescription>This action cannot be undone.</DrawerDescription>
         </DrawerHeader>
         <div className="space-y-7 mt-5">
-          <div className="w-[60%] flex justify-center mx-auto">
+          <div className="w-full lg:w-[60%] flex justify-center mx-auto">
             <ImageGalery images={images} />
           </div>
-          <div className="max-w-xl mx-auto w-full">
+          <div className="max-w-xl mx-auto w-full px-3">
             <div className="font- space-y-4 text-secondary font-sans text-lg">
               {
                 description.map((para: string, index: number) => (
@@ -178,7 +179,7 @@ const Tech = ({ tech, index }: { tech: string, index: number }) => {
 const ImageGalery = ({ images }: { images: string[] }) => {
   const [imageIndex, setImageIndex] = useState(0)
   return (
-    <div className="w-fit flex gap-x-3 min-h-80 h-80  justify-center ">
+    <div className="w-fit flex-col  flex md:flex-row gap-x-3 min-h-80 h-80  justify-center ">
       <div className="h-full">
         <Image
           src={images[imageIndex]}
@@ -194,8 +195,34 @@ const ImageGalery = ({ images }: { images: string[] }) => {
             align: "start",
             loop: true,
           }}
-          className="w-[200px]"
+          className="hidden md:block w-[200px]"
           orientation="vertical"
+        >
+
+          <CarouselContent className="h-84" >
+            {
+              images.map((image: string, index) => (
+                <CarouselItem className="pl-1 cursor-pointer md:basis-1/2 lg:basis-1/3 " onClick={() => setImageIndex(index)} key={index}>
+                  <Image
+                    src={image}
+                    width={200}
+                    height={200}
+                    alt="main image"
+                    className="objet-cover border border-secondary"
+
+                  />
+                </CarouselItem>
+              ))
+            }
+          </CarouselContent>
+        </Carousel>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="block md:hidden w-[200px]"
+          orientation="horizontal"
         >
 
           <CarouselContent className=" h-84" >

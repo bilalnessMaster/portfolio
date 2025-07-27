@@ -5,12 +5,12 @@ import { ArrowUpRight, GithubIcon, Linkedin, Mail } from "lucide-react"
 export const contacts = [
   {
     icon: <Mail className="size-6" />,
-    address: "gmail.com",
+    address: "https://gmail.com",
     name: "bilal.habib.allah.pro@gmail.com",
   },
   {
     icon: <Linkedin className="size-6" />,
-    address: "Linkedin.com/profile/bilal habib allah",
+    address: "https://Linkedin.com/profile/bilal habib allah",
     name: "bilal habib allah",
   },
   {
@@ -55,16 +55,15 @@ export const Contact = () => {
     <div className="flex  items-start mt-4">
       <div className="flex items-center gap-x-5 ">
         <h1 className="font-bricolage font-medium text-base  text-primary">Contact</h1>
-        <span className="w-16 h-0.5 inline-flex bg-primary"></span>
+        <span className="w-5 md:w-16 h-0.5 inline-flex bg-primary"></span>
       </div>
       <div className="space-y-4 pl-5">
         {
           contacts.map((contact) => (
-            <Link className="font-bricolage flex items-center gap-x-2 text-secondary group text-base underline underline-offset-4 duration-500 transition-all hover:text-warning" key={contact.name} href={contact.address}>
+            <Link className="font-bricolage flex items-center gap-x-2 text-secondary group  text-sm md:text-base underline underline-offset-4 duration-500 transition-all hover:text-warning" key={contact.name} href={contact.address}>
               {contact.icon}
               <span className="">{contact.name}</span>
               <ArrowUpRight className="size-5 group-hover:rotate-45 transiton0all duration-100" />
-
             </Link>
           ))
         }

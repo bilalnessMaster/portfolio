@@ -17,7 +17,7 @@ export const Wrapper = ({ children }: Props) => {
   return (
     <>
       <ReactLenis root />
-      <div>
+      <div className='px-3'>
         <div className=" h-[45vh]  w-full">
 
         </div>
